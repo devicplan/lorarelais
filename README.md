@@ -10,12 +10,12 @@ When sending a double byte, the first byte contains the send interval as a hex n
 
 At each send interval 6 bytes are transmitted. The 6 bytes are currently used as follows.
 
-Byte - 0x00 (relay is off) or 0x01 (relay is on)
-Byte - 0x01...0xB4 (transmission interval in minutes 1-180 minutes)
-Byte - MSB voltage of the accumulator (0x03 = 3.xxx Volt)
-Byte - first decimal place voltage (0x07 = x.7xx Volt)
-Byte - second decimal place voltage (0x04 = x.x4x volts)
-Byte - LSB or third decimal place voltage (0x09 = x.xx9 volts)
+1. Byte - 0x00 (relay is off) or 0x01 (relay is on)
+2. Byte - 0x01...0xB4 (transmission interval in minutes 1-180 minutes)
+3. Byte - MSB voltage of the accumulator (0x03 = 3.xxx Volt)
+4. Byte - first decimal place voltage (0x07 = x.7xx Volt)
+5. Byte - second decimal place voltage (0x04 = x.x4x volts)
+6. Byte - LSB or third decimal place voltage (0x09 = x.xx9 volts)
 
 I chose the simple voltage output over the last 4 bytes, because I wanted to read the voltage of the accumulator fast and without calculating first.
 
