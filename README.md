@@ -33,12 +33,12 @@ Beim Senden eines Doppelbyte enthält das erste Byte den Sendeintervall als Hexz
 
 Bei jedem Sendeintervall werden 6 Byte übertragen. Die 6 Byte werden momentan wie folgt genutzt.
 
-Byte – 0x00 (Relais ist aus) oder 0x01 (Relais ist an)
-Byte – 0x01…0xB4 (Sendeintervall in Minuten 1-180 Minuten)
-Byte – MSB Spannung des Akkus (0x03 = 3.xxx Volt)
-Byte – erste Nachkommastelle Spannung (0x07 = x.7xx Volt)
-Byte – zweite Nachkommastelle Spannung (0x04 = x.x4x Volt)
-Byte – LSB oder dritte Nachkommastelle Spannung (0x09 = x.xx9 Volt)
+1. Byte – 0x00 (Relais ist aus) oder 0x01 (Relais ist an)
+2. Byte – 0x01…0xB4 (Sendeintervall in Minuten 1-180 Minuten)
+3. Byte – MSB Spannung des Akkus (0x03 = 3.xxx Volt)
+4. Byte – erste Nachkommastelle Spannung (0x07 = x.7xx Volt)
+5. Byte – zweite Nachkommastelle Spannung (0x04 = x.x4x Volt)
+6. Byte – LSB oder dritte Nachkommastelle Spannung (0x09 = x.xx9 Volt)
 
 Die simple Spannungsausgabe über die letzten 4 Byte habe ich gewählt, weil ich schnell und ohne erst rumzurechnen die Spannung des Akkus ablesen wollte.
 
