@@ -1,6 +1,8 @@
 /*******************************************************************************
- * Jens Dietrich - www.icplan.de - Hoyerswerda - 14.04.2023 LoRaWan Relais 
- * Clockerror = https://www.thethingsnetwork.org/forum/t/using-lmic-setclockerror-on-mcci-lmic-howto/39776
+ * Jens Dietrich - www.icplan.de - Hoyerswerda - 17.04.2023 LoRaWan Relais
+ * my customization for lower power consumption
+ *   ADC while standby off -> reduces current by 72µA
+ *   BOD off               -> reduces current by 20µA
  * 
  * Copyright (c) 2015 Thomas Telkamp and Matthijs Kooijman 
  * Copyright (c) 2018 Terry Moore, MCCI
@@ -252,11 +254,14 @@ void onEvent (ev_t ev) {
             digitalWrite(LED, LOW);                                                       // short led pulse 
             delay(40);
             digitalWrite(LED, HIGH);             
+            uint8_t adcbackup = ADCSRA;                                                   // push adc parameter
+            ADCSRA = 0;                                                                   // adc switch off before standby
 
             delay(500);
             for(uint16_t t=0;t<((TX_INTERVAL * rec_t)/8);t++)  {                          // interval see above
               startSleeping();
             }
+            ADCSRA = adcbackup;                                                           // pop adc parameter
             delay(500);
             os_setTimedCallback(&sendjob, os_getTime()+sec2osticks(1), do_send);
             break;
